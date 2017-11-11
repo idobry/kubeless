@@ -1,18 +1,17 @@
 import logging
-import random
 from flask import Response, Flask
 from kafka import KafkaConsumer
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
 
 consumer = KafkaConsumer(bootstrap_servers = 'kafka:9092')
-consumer.subscribe(topics=['kubeless'])
+consumer.subscribe(topics=['toScreen'])
 
 application = Flask(__name__)
 
 @application.route('/')
 def index():
-    return "Hello, World!"
+    return "Hello World!"
 
 
 @application.route('/stream')
@@ -31,13 +30,4 @@ def events():
 
 if __name__ == '__main__':
     application.run(debug = True, host='0.0.0.0')
-
-
-
-
-
-
-
-
-
 
