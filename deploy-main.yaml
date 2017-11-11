@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: main
-        image: idobry/main:1.0.2
+        image: idobry/main:1.0.4
         ports:
         - containerPort: 5000
 
