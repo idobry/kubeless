@@ -3,19 +3,19 @@ import random
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
 
-MAX_MSG = 10
+topic = 'toScreen'
 
 def run(context):
     try:
-        count = 0
         producer = KafkaProducer(bootstrap_servers='kafka:9092')
-        while count < MAX_MSG:
-            count+=1
-            producer.send('kubeless', context + '_' + str(count))       
-            time.sleep(1)
+        producer.send(topic, 'New data saved : ' + context )
+        time.sleep(1)
+        producer.send(topic, 'Doing something with it...') 
+        time.sleep(1)
+        producer.send(topic, 'Sent ' + context + ' to backup')
     except KafkaError as e:
            print("**ERROR**"+str(e))
-    
-    producer.close()
+    finally:
+        producer.close()
 
 
